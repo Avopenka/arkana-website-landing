@@ -1,0 +1,364 @@
+/**
+ * Performance-optimized CSS for high-performance components
+ * Guided by Wu Wei principles of natural motion
+ */
+
+/* Shimmer animation for skeleton loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Optimized virtual scroll container */
+.virtual-scroll-container {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.virtual-scroll-element {
+  contain: layout style paint;
+  transform: translateZ(0); /* Force GPU acceleration */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.virtual-scroll-element::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.virtual-scroll-element::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.virtual-scroll-element::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.virtual-scroll-element::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Virtual content optimizations */
+.virtual-content {
+  contain: layout;
+  position: relative;
+}
+
+/* Performance-optimized skeleton animations */
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Dark mode shimmer */
+.dark .skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+}
+
+/* Optimized card animations */
+.performance-card {
+  contain: layout style paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.performance-card:hover {
+  transform: translateY(-2px) translateZ(0);
+}
+
+/* Smooth transitions */
+.performance-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* Memory-optimized animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Performance indicators */
+.performance-indicator {
+  position: relative;
+  overflow: hidden;
+}
+
+.performance-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: sweep 2s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Chart optimizations */
+.performance-chart-container {
+  contain: layout style paint;
+  position: relative;
+}
+
+.performance-chart {
+  max-height: 400px;
+  contain: layout style;
+}
+
+/* Optimized grid layouts */
+.performance-grid {
+  display: grid;
+  gap: 1rem;
+  contain: layout;
+}
+
+.performance-grid-item {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Pulse animation for real-time indicators */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.performance-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* High-performance button states */
+.performance-button {
+  contain: layout style paint;
+  transform: translateZ(0);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.performance-button:active {
+  transform: scale(0.98) translateZ(0);
+}
+
+/* Optimized focus states */
+.performance-focus:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  transition: outline-color 0.15s ease;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .performance-transition,
+  .performance-card,
+  .performance-button {
+    transition: none;
+  }
+  
+  .skeleton-shimmer,
+  .performance-indicator::before,
+  .performance-pulse {
+    animation: none;
+  }
+  
+  .fade-in,
+  .slide-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* High contrast preferences */
+@media (prefers-contrast: high) {
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 0, 0, 0.5),
+      transparent
+    );
+  }
+  
+  .dark .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent
+    );
+  }
+}
+
+/* Print optimizations */
+@media print {
+  .performance-card,
+  .virtual-scroll-container,
+  .performance-indicator {
+    transform: none;
+    animation: none;
+    contain: none;
+    will-change: auto;
+  }
+  
+  .skeleton-shimmer {
+    background: #f0f0f0;
+    animation: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .virtual-scroll-element {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  .performance-grid {
+    gap: 0.75rem;
+  }
+  
+  .performance-card:hover {
+    transform: none; /* Disable hover effects on touch devices */
+  }
+}
+
+/* Performance monitoring utilities */
+.perf-monitor-overlay {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.perf-metric {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.25rem 0;
+}
+
+.perf-metric-good {
+  color: #10b981;
+}
+
+.perf-metric-warning {
+  color: #f59e0b;
+}
+
+.perf-metric-error {
+  color: #ef4444;
+}
+
+/* Loading states with natural rhythm */
+.natural-loading {
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 50%,
+    transparent 75%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 20px 20px;
+  animation: naturalFlow 1s linear infinite;
+}
+
+@keyframes naturalFlow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0;
+  }
+}
+
+/* Memory-efficient list items */
+.efficient-list-item {
+  contain: layout style paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* GPU-accelerated transformations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Critical performance styles - load first */
+.critical-perf {
+  contain: layout style paint;
+  will-change: transform;
+  transform: translateZ(0);
+}
